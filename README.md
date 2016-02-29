@@ -4,8 +4,8 @@
 Self balancing structure study with Processing, using a lot of PVector stuff.
 
 ##Source code
-`(float) DISTANCE` : the distance on which the nodes are linked (+/- 10%).
-`(boolean) FORCE_UPDATE_LINK` : allow the nodes to be dynamically relinked.
++ `(float) DISTANCE` : the distance on which the nodes are linked (+/- 10%).
++ `(boolean) FORCE_UPDATE_LINK` : allow the nodes to be dynamically relinked.
 
 ##Controls
 
