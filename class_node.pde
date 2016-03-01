@@ -1,6 +1,6 @@
 public class Node{
 	ArrayList<Node> LINKS = new ArrayList<Node>();
-	PVector POSITION, DIRECTION;
+	PVector POSITION, DIRECTION, START_POS, STOP_POS;
 	float VELOCITY;
 
 	boolean FIXED = false, HOVER = false;
@@ -9,6 +9,7 @@ public class Node{
 
 	Node(float x, float y){
 		this.POSITION = new PVector(x,y);
+		this.START_POS = new PVector(x,y);
 		this.DIRECTION = new PVector(0,0);
 		this.VELOCITY = random(0,1);
 	}
@@ -30,15 +31,15 @@ public class Node{
 							= link.DIRECTION
 							= PVector.sub(this.POSITION, link.POSITION);
 
-						if(!link.FIXED) link.POSITION.add(link.DIRECTION.mult(acceleration*DEBUG_PAUSE*DEBUG_SPEED));
-						if(!this.HOVER) this.POSITION.sub(link.DIRECTION.mult(acceleration*DEBUG_PAUSE*DEBUG_SPEED));
+						if(!link.FIXED) link.POSITION.add(link.DIRECTION.mult(acceleration));
+						if(!this.HOVER) this.POSITION.sub(link.DIRECTION.mult(acceleration));
 					}else if(distance < DISTANCE*1.1){
 						this.DIRECTION
 							= link.DIRECTION
 							= PVector.sub(this.POSITION, link.POSITION);
 
-						if(!link.FIXED) link.POSITION.sub(link.DIRECTION.mult(acceleration*DEBUG_PAUSE*DEBUG_SPEED));
-						if(!this.HOVER) this.POSITION.add(link.DIRECTION.mult(acceleration*DEBUG_PAUSE*DEBUG_SPEED));
+						if(!link.FIXED) link.POSITION.sub(link.DIRECTION.mult(acceleration));
+						if(!this.HOVER) this.POSITION.add(link.DIRECTION.mult(acceleration));
 					}
 				// }
 			}

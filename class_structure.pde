@@ -1,14 +1,19 @@
 public class Structure{
 	ArrayList<Node> NODES;
 	Node HOVER;
+	boolean RUN;
 
-	Structure(){ this.NODES = new ArrayList<Node>(); }
+	Structure(){
+		this.NODES = new ArrayList<Node>();
+		this.RUN = true;
+	}
 
 	void add(Node node){
-		this.NODES.add(node);
-		node.INDEX = this.NODES.size();
-
-		if(!FORCE_UPDATE_LINKS) for(Node n : this.NODES) this.find_links(n);
+		if(this.RUN){
+			this.NODES.add(node);
+			node.INDEX = this.NODES.size();
+			if(!FORCE_UPDATE_LINKS) for(Node n : this.NODES) this.find_links(n);
+		}
 	}
 
 	void find_links(Node n){
@@ -38,9 +43,23 @@ public class Structure{
 		s.HOVER = null;
 
 		for(Node n : this.NODES){
-			n.update();
+			if(this.RUN){
+				n.update();
+				if(n.HOVER) this.HOVER = n;
+			}
 			if(FORCE_UPDATE_LINKS) this.find_links(n);
-			if(n.HOVER) this.HOVER = n;
+		}
+	}
+
+	void play(float frame){
+		for(Node n : this.NODES) n.POSITION = PVector.lerp(n.START_POS, n.STOP_POS, map(constrain(frame, 0, 100), 0, 100, 0, 1));
+	}
+
+	void stop(){
+		this.RUN = false;
+		for(Node n : this.NODES){
+			n.STOP_POS = n.POSITION;
+			n.POSITION = n.START_POS;
 		}
 	}
 
@@ -48,7 +67,13 @@ public class Structure{
 		strokeWeight(5);
 		stroke(0);
 		for(Node n : this.NODES){
+			if(!this.RUN){
+				stroke(255, 0, 0, 127);
+				ellipse(n.STOP_POS.x, n.STOP_POS.y, 10, 10);
+				line(n.START_POS.x, n.START_POS.y, n.STOP_POS.x, n.STOP_POS.y);
+			}
 			for(Node link : n.LINKS){
+				stroke(0);
 				line(n.POSITION.x, n.POSITION.y, link.POSITION.x, link.POSITION.y);
 			}
 		}
