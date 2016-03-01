@@ -1,14 +1,15 @@
 public class Structure{
-	ArrayList<Node> NODES;
-	Node HOVER;
-	boolean RUN;
+	public ArrayList<Node> NODES;
+	public Node HOVER;
+	public boolean RUN;
+	public int MODE;
 
 	Structure(){
 		this.NODES = new ArrayList<Node>();
 		this.RUN = true;
 	}
 
-	void add(Node node){
+	public void add(Node node){
 		if(this.RUN){
 			this.NODES.add(node);
 			node.INDEX = this.NODES.size();
@@ -16,7 +17,7 @@ public class Structure{
 		}
 	}
 
-	void find_links(Node n){
+	private void find_links(Node n){
 		// clear all previous links
 		n.LINKS.clear();
 
@@ -39,23 +40,20 @@ public class Structure{
 
 	//-------------------------------------------------------------
 
-	void update(){
+	public void update(){
 		s.HOVER = null;
 
 		for(Node n : this.NODES){
-			if(this.RUN){
-				n.update();
-				if(n.HOVER) this.HOVER = n;
-			}
+			if(this.RUN) n.update();
 			if(FORCE_UPDATE_LINKS) this.find_links(n);
 		}
 	}
 
-	void play(float amt){
+	public void play(float amt){
 		for(Node n : this.NODES) n.POSITION = PVector.lerp(n.START_POS, n.STOP_POS, amt);
 	}
 
-	void stop_simulation(){
+	public void stop_simulation(){
 		this.RUN = false;
 		for(Node n : this.NODES){
 			n.STOP_POS = n.POSITION;
@@ -63,21 +61,28 @@ public class Structure{
 		}
 	}
 
-	void draw(){
+	public void draw(){
 		strokeWeight(5);
-		stroke(0);
 		for(Node n : this.NODES){
 			if(!this.RUN){
-				stroke(255,0,0,127);
-				ellipse(n.STOP_POS.x, n.STOP_POS.y, 5, 5);
-				line(n.START_POS.x, n.START_POS.y, n.STOP_POS.x, n.STOP_POS.y);
+				noStroke();
+				fill(255,0,0,50);
+				pushMatrix();
+					translate(n.STOP_POS.x, n.STOP_POS.y, n.STOP_POS.z);
+					sphere(4.9);
+				popMatrix();
+				stroke(255,0,0,50);
+				line(n.START_POS.x, n.START_POS.y, n.START_POS.z, n.STOP_POS.x, n.STOP_POS.y, n.STOP_POS.z);
 			}
 
 			stroke(0);
-			for(Node link : n.LINKS) line(n.POSITION.x, n.POSITION.y, link.POSITION.x, link.POSITION.y);
+			for(Node link : n.LINKS) line(n.POSITION.x, n.POSITION.y, n.POSITION.z, link.POSITION.x, link.POSITION.y, link.POSITION.z);
 		}
 
-		for(Node n : this.NODES) n.draw();
+		for(Node n : this.NODES){
+			n.draw();
+			if(this.RUN && n.hover()) this.HOVER = n;
+		}
 	}
 
 
