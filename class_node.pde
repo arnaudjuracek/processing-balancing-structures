@@ -1,7 +1,6 @@
 public class Node{
 	public ArrayList<Node> LINKS = new ArrayList<Node>();
 	public PVector POSITION, DIRECTION, START_POS, STOP_POS;
-	private float VELOCITY;
 
 	public boolean FIXED = false, HOVER = false;
 	private float SIZE = 0, TSIZE = 10;
@@ -11,8 +10,8 @@ public class Node{
 		this.POSITION = new PVector(x,y,z);
 		this.START_POS = new PVector(x,y,z);
 		this.DIRECTION = new PVector(0,0,0);
-		this.VELOCITY = random(0,1);
 	}
+
 
 	//-------------------------------------------------------------
 
