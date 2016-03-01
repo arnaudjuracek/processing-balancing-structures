@@ -25,7 +25,7 @@ public class Node{
 				float distance = int(this.POSITION.dist(link.POSITION)/10)*10;
 				float acceleration = map(dist(0, DISTANCE, 0, distance), 0, width, 0, 1);
 
-				if(abs(DISTANCE - distance) > 20){
+				if(abs(DISTANCE - distance) > DISTANCE*.2){
 					if(distance > DISTANCE*.9){
 						this.DIRECTION
 							= link.DIRECTION
@@ -68,7 +68,7 @@ public class Node{
 		if(this.FIXED) fill(0);
 		else fill(255);
 
-		if(this.hover()) TSIZE = 10;
+		if(this.hover()) TSIZE = 20;
 		else TSIZE = 5;
 
 		pushMatrix();
