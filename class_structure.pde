@@ -24,10 +24,10 @@ public class Structure{
 		// sort the new ArrayList by distance from the Node n
 		Collections.sort(sortable_nodes, new DistanceComparator(n));
 
-		// link the first 3 nodes to the Node n
-		for(int i=0; i<min(3, sortable_nodes.size()); i++){
+		// link the first "STRUCTURE_STABILITY" nodes to the Node n
+		for(int i=0; i<min(STRUCTURE_STABILITY, sortable_nodes.size()); i++){
 			Node l = sortable_nodes.get(i);
-			if(l!=n && l.LINKS.size()<3 && n.POSITION.dist(l.POSITION) < DISTANCE*2) n.LINKS.add(l);
+			if(l!=n && l.LINKS.size()<STRUCTURE_STABILITY && n.POSITION.dist(l.POSITION) < DISTANCE*2) n.LINKS.add(l);
 		}
 
 	}

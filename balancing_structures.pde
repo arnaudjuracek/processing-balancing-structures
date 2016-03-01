@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 
 boolean FORCE_UPDATE_LINKS = true;
 float DISTANCE = 100;
+int STRUCTURE_STABILITY = 6; // default = 3;
 
 float DEBUG_SPEED = 1.0, DEBUG_PAUSE = 1;
 Structure s;
