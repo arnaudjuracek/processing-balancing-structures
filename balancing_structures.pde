@@ -43,9 +43,11 @@ void mouseClicked(){
 	else if(dragged != null) dragged.FIXED = !dragged.FIXED;
 }
 
+
 void keyPressed(){
 	if(keyCode == RIGHT) DEBUG_SPEED += .1;
 	if(keyCode == LEFT) DEBUG_SPEED = DEBUG_SPEED > .1 ? DEBUG_SPEED-.1 : 0;
+	if(key == 'f') FORCE_UPDATE_LINKS = !FORCE_UPDATE_LINKS;
 	if(key == 'p') DEBUG_PAUSE = (DEBUG_PAUSE > 0) ? 0:1;
 	if(key == 'r') for(int i=0; i<random(20); i++) s.add(new Node(random(width), random(height)));
 	if(key == 'c') s.NODES = new ArrayList<Node>();

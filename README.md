@@ -5,7 +5,6 @@ Self balancing structure study with Processing, using a lot of PVector stuff.
 
 ##Source code
 + `(float) DISTANCE` : the distance on which the nodes are linked (+/- 10%).
-+ `(boolean) FORCE_UPDATE_LINK` : allow the nodes to be dynamically relinked.
 
 ##Controls
 
@@ -17,6 +16,7 @@ Self balancing structure study with Processing, using a lot of PVector stuff.
 + <kbd>r</kbd> to add a few random nodes.
 + <kbd>c</kbd> to clear the nodes array.
 + <kbd>space</kbd> to generate a random node array.
++ <kbd>f</kbd> to toggle dynamic node linking.
 
 ---
 Arnaud Juracek, GNU GENERAL PUBLIC LICENSE Version 2, June 1991
