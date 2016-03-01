@@ -16,11 +16,12 @@ Rectangle boundaries;
 
 void setup(){
 	size(900, 600, P3D);
+	frameRate(30);
+
 	CAM = new PeasyCam(this, 800);
 	CAM.setWheelScale(.25);
 
 	s = new Structure();
-	 // new Structure(Structure.2D);
 
 	boundaries = new Rectangle(50, 50, width-50, height-50);
 	// populate
@@ -28,8 +29,6 @@ void setup(){
 		s.add(new Node(random(width), random(height), random(-width*.5,width*.5)));
 		if(random(100)>90) s.NODES.get(s.NODES.size()-1).FIXED = true;
 	}
-
-	frameRate(30);
 }
 
 void draw(){
