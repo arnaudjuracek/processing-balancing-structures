@@ -21,24 +21,26 @@ public class Node{
 		if(!this.FIXED){
 
 			for(Node link : this.LINKS){
-				float distance = this.POSITION.dist(link.POSITION);
-				float acceleration = int(map(dist(0, DISTANCE, 0, distance), 0, width, 0, 50))*.05;
+				float distance = int(this.POSITION.dist(link.POSITION)/10)*10;
+				float acceleration = map(dist(0, DISTANCE, 0, distance), 0, width, 0, 1);
 
-				if(distance > DISTANCE*.9){
-					this.DIRECTION
-						= link.DIRECTION
-						= PVector.sub(this.POSITION, link.POSITION);
+				// if(acceleration > .03){
+					if(distance > DISTANCE*.9){
+						this.DIRECTION
+							= link.DIRECTION
+							= PVector.sub(this.POSITION, link.POSITION);
 
-					if(!link.FIXED) link.POSITION.add(link.DIRECTION.mult(acceleration*this.VELOCITY));
-					if(!this.HOVER) this.POSITION.sub(link.DIRECTION.mult(acceleration*this.VELOCITY*DEBUG_PAUSE*DEBUG_SPEED));
-				}else if(distance < DISTANCE*1.1){
-					this.DIRECTION
-						= link.DIRECTION
-						= PVector.sub(this.POSITION, link.POSITION);
+						if(!link.FIXED) link.POSITION.add(link.DIRECTION.mult(acceleration*DEBUG_PAUSE*DEBUG_SPEED));
+						if(!this.HOVER) this.POSITION.sub(link.DIRECTION.mult(acceleration*DEBUG_PAUSE*DEBUG_SPEED));
+					}else if(distance < DISTANCE*1.1){
+						this.DIRECTION
+							= link.DIRECTION
+							= PVector.sub(this.POSITION, link.POSITION);
 
-					if(!link.FIXED) link.POSITION.sub(link.DIRECTION.mult(acceleration*this.VELOCITY));
-					if(!this.HOVER) this.POSITION.add(link.DIRECTION.mult(acceleration*this.VELOCITY*DEBUG_PAUSE*DEBUG_SPEED));
-				}
+						if(!link.FIXED) link.POSITION.sub(link.DIRECTION.mult(acceleration*DEBUG_PAUSE*DEBUG_SPEED));
+						if(!this.HOVER) this.POSITION.add(link.DIRECTION.mult(acceleration*DEBUG_PAUSE*DEBUG_SPEED));
+					}
+				// }
 			}
 
 			// wall collisions
