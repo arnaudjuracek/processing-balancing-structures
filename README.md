@@ -17,6 +17,7 @@ Self balancing structure study with Processing, using a lot of PVector stuff.
 + <kbd>c</kbd> to clear the nodes array.
 + <kbd>space</kbd> to generate a random node array.
 + <kbd>f</kbd> to toggle dynamic node linking.
++ <kbd>d</kbd> to set a new random linking distance.
 
 ---
 Arnaud Juracek, GNU GENERAL PUBLIC LICENSE Version 2, June 1991
