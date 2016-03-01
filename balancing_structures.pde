@@ -64,13 +64,16 @@ void mouseClicked(){ if(s.HOVER!=null) s.HOVER.FIXED = !s.HOVER.FIXED; }
 void keyPressed(){
 	if(key == 'c') s = new Structure();
 	if(key == 'd'){
-		DISTANCE = random(100, 300);
+		DISTANCE = random(50, 300);
 		println("New linking distance set to " + DISTANCE + "px");
 	}
 	if(key == 'f') FORCE_UPDATE_LINKS = !FORCE_UPDATE_LINKS;
 	if(key == 'p') PAUSE = !PAUSE;
 	if(key == 'r') for(int i=0; i<random(20); i++) s.add(new Node(random(width), random(height), random(-width*.5,width*.5)));
-	if(key == 's') if(s.RUN) s.stop_simulation();
+	if(key == 's'){
+		if(s.RUN) s.stop_simulation();
+		else s.resume_simulation();
+	}
 	if(key == ' '){
 		s = new Structure();
 		for(int i=0; i<random(50,200); i++){

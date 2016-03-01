@@ -40,15 +40,6 @@ public class Structure{
 
 	//-------------------------------------------------------------
 
-	public void update(){
-		s.HOVER = null;
-
-		for(Node n : this.NODES){
-			if(this.RUN) n.update();
-			if(FORCE_UPDATE_LINKS) this.find_links(n);
-		}
-	}
-
 	public void play(float amt){
 		for(Node n : this.NODES) n.POSITION = PVector.lerp(n.START_POS, n.STOP_POS, amt);
 	}
@@ -58,6 +49,22 @@ public class Structure{
 		for(Node n : this.NODES){
 			n.STOP_POS = n.POSITION;
 			n.POSITION = n.START_POS;
+		}
+	}
+
+	public void resume_simulation(){
+		this.RUN = true;
+		for(Node n : this.NODES) n.POSITION = n.STOP_POS;
+	}
+
+	//-------------------------------------------------------------
+
+	public void update(){
+		s.HOVER = null;
+
+		for(Node n : this.NODES){
+			if(this.RUN) n.update();
+			if(FORCE_UPDATE_LINKS) this.find_links(n);
 		}
 	}
 
