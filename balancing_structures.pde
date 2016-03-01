@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 boolean FORCE_UPDATE_LINKS = true;
 boolean PAUSE = false;
 float DISTANCE = 100;
-int STRUCTURE_STABILITY = 6; // default = 3;
+int STRUCTURE_STABILITY = 4; // default = 3;
 
 Structure s;
 Rectangle boundaries;
@@ -22,7 +22,7 @@ void draw(){
 	background(#EEEEEE);
 	if(!PAUSE){
 		s.update();
-		if(!s.RUN) s.play(abs(sin(frameCount*.01))*100);
+		if(!s.RUN) s.play(map(sin(frameCount*.1), -1, 1, 0, 1));
 	}else{
 		fill(0);
 		textAlign(RIGHT);
@@ -44,10 +44,13 @@ void keyPressed(){
 	if(key == 'p') PAUSE = !PAUSE;
 	if(key == 'r') for(int i=0; i<random(20); i++) s.add(new Node(random(width), random(height)));
 	if(key == 'c') s = new Structure();
-	if(key == 's') if(s.RUN) s.stop();
+	if(key == 's') if(s.RUN) s.stop_simulation();
 	if(key == ' '){
 		s = new Structure();
-		for(int i=0; i<random(200); i++) s.add(new Node(random(width), random(height)));
+		for(int i=0; i<random(200); i++){
+			s.add(new Node(random(width), random(height)));
+			if(random(100)>90) s.NODES.get(s.NODES.size()-1).FIXED = true;
+		}
 	}
 
 }

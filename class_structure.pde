@@ -51,11 +51,11 @@ public class Structure{
 		}
 	}
 
-	void play(float frame){
-		for(Node n : this.NODES) n.POSITION = PVector.lerp(n.START_POS, n.STOP_POS, map(constrain(frame, 0, 100), 0, 100, 0, 1));
+	void play(float amt){
+		for(Node n : this.NODES) n.POSITION = PVector.lerp(n.START_POS, n.STOP_POS, amt);
 	}
 
-	void stop(){
+	void stop_simulation(){
 		this.RUN = false;
 		for(Node n : this.NODES){
 			n.STOP_POS = n.POSITION;
@@ -68,14 +68,13 @@ public class Structure{
 		stroke(0);
 		for(Node n : this.NODES){
 			if(!this.RUN){
-				stroke(255, 0, 0, 127);
-				ellipse(n.STOP_POS.x, n.STOP_POS.y, 10, 10);
+				stroke(255,0,0,127);
+				ellipse(n.STOP_POS.x, n.STOP_POS.y, 5, 5);
 				line(n.START_POS.x, n.START_POS.y, n.STOP_POS.x, n.STOP_POS.y);
 			}
-			for(Node link : n.LINKS){
-				stroke(0);
-				line(n.POSITION.x, n.POSITION.y, link.POSITION.x, link.POSITION.y);
-			}
+
+			stroke(0);
+			for(Node link : n.LINKS) line(n.POSITION.x, n.POSITION.y, link.POSITION.x, link.POSITION.y);
 		}
 
 		for(Node n : this.NODES) n.draw();
