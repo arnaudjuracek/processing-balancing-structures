@@ -3,7 +3,7 @@ public class Node{
 	public PVector POSITION, DIRECTION, START_POS, STOP_POS;
 
 	public boolean FIXED = false, HOVER = false;
-	private float SIZE = 0, TSIZE = 10;
+	private float SIZE = 0, TSIZE = 50;
 	private int INDEX = 0;
 
 	Node(float x, float y, float z){
@@ -44,10 +44,10 @@ public class Node{
 			}
 
 			// wall collisions
-			this.POSITION.x = max(boundaries.x, this.POSITION.x);
-			this.POSITION.x = min(this.POSITION.x, boundaries.width);
-			this.POSITION.y = max(boundaries.y, this.POSITION.y);
-			this.POSITION.y = min(this.POSITION.y, boundaries.height);
+			// this.POSITION.x = max(boundaries.x, this.POSITION.x);
+			// this.POSITION.x = min(this.POSITION.x, boundaries.width);
+			// this.POSITION.y = max(boundaries.y, this.POSITION.y);
+			// this.POSITION.y = min(this.POSITION.y, boundaries.height);
 		}
 
 	}

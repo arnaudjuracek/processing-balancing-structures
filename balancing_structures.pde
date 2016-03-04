@@ -69,7 +69,7 @@ void keyPressed(){
 	}
 	if(key == 'f') FORCE_UPDATE_LINKS = !FORCE_UPDATE_LINKS;
 	if(key == 'p') PAUSE = !PAUSE;
-	if(key == 'r') for(int i=0; i<random(20); i++) s.add(new Node(random(width), random(height), random(-width*.5,width*.5)));
+	if(key == 'r') for(int i=0; i<random(20); i++) s.add(new Node(random(-width, width), random(-height, height), random(-width,width)));
 	if(key == 's'){
 		if(s.RUN) s.stop_simulation();
 		else s.resume_simulation();
