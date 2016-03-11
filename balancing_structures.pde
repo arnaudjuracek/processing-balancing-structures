@@ -15,8 +15,12 @@ Structure s;
 Rectangle boundaries;
 
 void setup(){
-	size(900, 600, P3D);
+	size(1200, 800, P3D);
 	frameRate(30);
+
+	WRAP = new IsoWrap(this);
+	SKELETON = new IsoSkeleton(this);
+	SURFACE = new IsoSurface(this, new PVector(0,0,0), new PVector(1000, 1000, 1000), 8);
 
 	CAM = new PeasyCam(this, 800);
 	CAM.setWheelScale(.25);
@@ -29,12 +33,26 @@ void setup(){
 		s.add(new Node(random(width), random(height), random(-width*.5,width*.5)));
 		if(random(100)>90) s.NODES.get(s.NODES.size()-1).FIXED = true;
 	}
+
+	float r = width;
+	// PAUSE = true;
+	for(float theta=0; theta<PI; theta+=(PI/15)){
+		for(float phi=0; phi<TWO_PI; phi+=(TWO_PI/20)){
+			float x = r*sin(theta)*cos(phi) + r*.5;
+			float y = r*sin(theta)*sin(phi) + r*.5;
+			float z = r*cos(theta) + r*.5;
+
+			Node n = new Node(x,y,z);
+			n.FIXED = false;
+			s.add(n);
+		}
+	}
 }
 
 void draw(){
-	CAM.setActive(dragged==null);
 	background(70);
 	if(!PAUSE){
+		CAM.setActive(dragged==null);
 		s.update();
 		if(!s.RUN) s.play(map(sin(frameCount*.1), -1, 1, 0, 1));
 	}else{
@@ -67,7 +85,8 @@ void keyPressed(){
 		DISTANCE = random(50, 300);
 		println("New linking distance set to " + DISTANCE + "px");
 	}
-	if(key == 'f') FORCE_UPDATE_LINKS = !FORCE_UPDATE_LINKS;
+	if(key == 'l') FORCE_UPDATE_LINKS = !FORCE_UPDATE_LINKS;
+	if(key == 'f') for(Node n : s.NODES) n.FIXED = (random(1)>.75);
 	if(key == 'p') PAUSE = !PAUSE;
 	if(key == 'r') for(int i=0; i<random(20); i++) s.add(new Node(random(-width, width), random(-height, height), random(-width,width)));
 	if(key == 's'){

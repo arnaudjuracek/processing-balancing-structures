@@ -64,7 +64,7 @@ public class Node{
 		SIZE += dsize*.3;
 
 		noStroke();
-		if(this.FIXED) fill(0);
+		if(this.FIXED) fill(221, 23, 117);
 		else fill(255);
 
 		if(this.hover()) TSIZE = 20;

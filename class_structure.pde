@@ -69,7 +69,7 @@ public class Structure{
 	}
 
 	public void draw(){
-		strokeWeight(5);
+		strokeWeight(2);
 		for(Node n : this.NODES){
 			if(!this.RUN){
 				noStroke();
