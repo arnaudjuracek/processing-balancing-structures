@@ -18,10 +18,6 @@ void setup(){
 	size(1200, 800, P3D);
 	frameRate(30);
 
-	WRAP = new IsoWrap(this);
-	SKELETON = new IsoSkeleton(this);
-	SURFACE = new IsoSurface(this, new PVector(0,0,0), new PVector(1000, 1000, 1000), 8);
-
 	CAM = new PeasyCam(this, 800);
 	CAM.setWheelScale(.25);
 
