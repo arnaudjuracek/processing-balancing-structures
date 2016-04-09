@@ -1,7 +1,7 @@
 ![preview](preview.gif?raw=true "preview")
 
 ---
-Self balancing structure study with Processing, using a lot of PVector stuff.
+*Self balancing structure study with Processing, using a lot of PVector stuff.*
 
 ##Source code
 + `(float) DISTANCE` : the distance on which the nodes are linked (±10%).
@@ -19,5 +19,5 @@ Self balancing structure study with Processing, using a lot of PVector stuff.
 + <kbd>f</kbd> to toggle dynamic node linking.
 + <kbd>d</kbd> to set a new random linking distance.
 
----
-Arnaud Juracek, GNU GENERAL PUBLIC LICENSE Version 2, June 1991
+-
+**Arnaud Juracek**, `GNU GENERAL PUBLIC LICENSE Version 2, June 1991`
